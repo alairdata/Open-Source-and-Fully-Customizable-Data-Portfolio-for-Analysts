@@ -1,44 +1,52 @@
-A beginner-friendly, fully customizable data portfolio template built with basic HTML and CSS—no coding background required. Created specifically to help data analysts (especially in Africa) showcase their projects, tell their professional story, and stand out in the job market without expensive templates or complex frameworks.
+# Data Analyst Portfolio Template (No-Code)
 
-🌟 Why This Template Exists
-As a data analyst, you've probably heard the advice: "Build a portfolio!" But here's what they don't tell you:
+A beginner-friendly, fully customizable data portfolio template built with basic HTML and CSS—no coding background required.
 
-💸 Cost Barrier: Most professional templates cost $50-200+
-🧱 Design Complexity: Making your work look professional requires design skills
-😩 Template Saturation: Everyone ends up using the same 3-4 popular templates
-🔒 Platform Lock-in: Many solutions tie you to specific platforms or subscriptions
-📱 Mobile Issues: Templates often break on mobile devices
+Created specifically to help data analysts (especially in Africa) showcase their projects, tell their professional story, and stand out in the job market without expensive templates or complex frameworks.
+
+---
+
+## Why This Template Exists
+
+As a data analyst, you've probably heard the advice: "Build a portfolio!"  
+But here's what they don't tell you:
+
+- Cost Barrier: Most professional templates cost $50–200+
+- Design Complexity: Making your work look professional requires design skills
+- Template Saturation: Everyone ends up using the same 3–4 popular templates
+- Platform Lock-in: Many solutions tie you to specific platforms or subscriptions
+- Mobile Issues: Templates often break on mobile devices
 
 This template solves all of these problems.
-✨ Key Features
-🆓 Completely Free & Open Source
 
-No hidden costs, subscriptions, or premium features
-MIT License - use, modify, and share freely
-Self-hosted on GitHub Pages (100% free hosting)
+---
 
-🎯 Designed for Data Professionals
+## Key Features
 
-Project-focused structure - showcase your analytical thinking
-Technical depth sections - demonstrate skills across tools
-Storytelling framework - explain your background and journey
-Impact-driven - highlight business outcomes and insights
+### Completely Free & Open Source
+- No hidden costs, subscriptions, or premium features
+- MIT License — use, modify, and share freely
+- Self-hosted on GitHub Pages (100% free hosting)
 
-🔧 Beginner-Friendly Customization
+### Designed for Data Professionals
+- Project-focused structure — showcase your analytical thinking
+- Technical depth sections — demonstrate skills across tools
+- Storytelling framework — explain your background and journey
+- Impact-driven — highlight business outcomes and insights
 
-Plain HTML/CSS - no frameworks or build tools required
-Clear documentation - every section explained
-AI-assisted editing - works perfectly with ChatGPT, Claude, and Gemini
-Modular design - add, remove, or modify sections easily
+### Beginner-Friendly Customization
+- Plain HTML/CSS — no frameworks or build tools required
+- Clear documentation — every section explained
+- AI-assisted editing — works perfectly with ChatGPT, Claude, and Gemini
+- Modular design — add, remove, or modify sections easily
 
-📱 Professional & Responsive
+### Professional & Responsive
+- Mobile-first design — looks great on all devices
+- Clean, modern aesthetics — professional without being boring
+- Fast loading — no heavy frameworks or external dependencies
+- SEO-friendly — proper semantic HTML structure
 
-Mobile-first design - looks great on all devices
-Clean, modern aesthetics - professional without being boring
-Fast loading - no heavy frameworks or external dependencies
-SEO-friendly - proper semantic HTML structure
-
-📁 Template Structure
+### Template Structure
 portfolio-template/
 ├── index.html              # Main landing page (single-page layout)
 ├── styles/
@@ -55,50 +63,53 @@ portfolio-template/
 │   ├── images/             # Profile photos, project screenshots
 │   └── documents/          # Resume PDFs, certificates
 └── README.md               # This documentation
-🏠 Main Page (index.html) Sections
-1. Hero Section
 
-Professional headshot area
-Compelling headline about your data expertise
-Brief value proposition
-Call-to-action buttons
+# Main Page (index.html) Sections
 
-2. About Me
+## 1. Hero Section
 
-Your data journey and background
-What drives your analytical approach
-Career transition story (if applicable)
-Personal touch to connect with readers
+- Professional headshot area  
+- Compelling headline about your data expertise  
+- Brief value proposition  
+- Call-to-action buttons  
 
-3. Featured Projects
+## 2. About Me
 
-3-4 of your best analytical projects
-Brief descriptions with key insights
-Links to detailed project breakdowns
-Visual previews or screenshots
+- Your data journey and background  
+- What drives your analytical approach  
+- Career transition story (if applicable)  
+- Personal touch to connect with readers  
 
-4. Skills & Tools
+## 3. Featured Projects
 
-Technical skills matrix
-Proficiency levels for each tool
-Certification badges or logos
-Links to tool-specific project pages
+- 3–4 of your best analytical projects  
+- Brief descriptions with key insights  
+- Links to detailed project breakdowns  
+- Visual previews or screenshots  
 
-5. Experience
+## 4. Skills & Tools
 
-Professional timeline
-Key achievements and impacts
-Quantified results where possible
-Downloadable resume section
+- Technical skills matrix  
+- Proficiency levels for each tool  
+- Certification badges or logos  
+- Links to tool-specific project pages  
 
-6. Contact
+## 5. Experience
 
-Multiple contact methods
-Social media links
-Availability status
-Professional location
+- Professional timeline  
+- Key achievements and impacts  
+- Quantified results where possible  
+- Downloadable resume section  
 
-🔍 Deep Dive Pages
+## 6. Contact
+
+- Multiple contact methods  
+- Social media links  
+- Availability status  
+- Professional location  
+
+
+## Deep Dive Pages
 Each specialized page follows a consistent, story-driven structure:
 Project Showcase Format:
 html<!-- Project Header -->
