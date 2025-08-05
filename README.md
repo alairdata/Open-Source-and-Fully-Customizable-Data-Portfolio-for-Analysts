@@ -7,44 +7,44 @@
 
 A **beginner-friendly, fully customizable data portfolio template** built with basic HTML and CSS—no coding background required. Created specifically to help data analysts (especially in Africa) showcase their projects, tell their professional story, and stand out in the job market without expensive templates or complex frameworks.
 
-## 🌟 Why This Template Exists
+## Why This Template Exists
 
 As a data analyst, you've probably heard the advice: *"Build a portfolio!"* But here's what they don't tell you:
 
-- 💸 **Cost Barrier**: Most professional templates cost $50-200+
-- 🧱 **Design Complexity**: Making your work look professional requires design skills
-- 😩 **Template Saturation**: Everyone ends up using the same 3-4 popular templates
-- 🔒 **Platform Lock-in**: Many solutions tie you to specific platforms or subscriptions
-- 📱 **Mobile Issues**: Templates often break on mobile devices
+- **Cost Barrier**: Most professional templates cost $50-200+
+- **Design Complexity**: Making your work look professional requires design skills
+- **Template Saturation**: Everyone ends up using the same 3-4 popular templates
+- **Platform Lock-in**: Many solutions tie you to specific platforms or subscriptions
+- **Mobile Issues**: Templates often break on mobile devices
 
 **This template solves all of these problems.**
 
-## ✨ Key Features
+## Key Features
 
-### 🆓 Completely Free & Open Source
+### Completely Free & Open Source
 - No hidden costs, subscriptions, or premium features
 - MIT License - use, modify, and share freely
 - Self-hosted on GitHub Pages (100% free hosting)
 
-### 🎯 Designed for Data Professionals
+### Designed for Data Professionals
 - **Project-focused structure** - showcase your analytical thinking
 - **Technical depth sections** - demonstrate skills across tools
 - **Storytelling framework** - explain your background and journey
 - **Impact-driven** - highlight business outcomes and insights
 
-### 🔧 Beginner-Friendly Customization
+### Beginner-Friendly Customization
 - **Plain HTML/CSS** - no frameworks or build tools required
 - **Clear documentation** - every section explained
 - **AI-assisted editing** - works perfectly with ChatGPT, Claude, and Gemini
 - **Modular design** - add, remove, or modify sections easily
 
-### 📱 Professional & Responsive
+### Professional & Responsive
 - **Mobile-first design** - looks great on all devices
 - **Clean, modern aesthetics** - professional without being boring
 - **Fast loading** - no heavy frameworks or external dependencies
 - **SEO-friendly** - proper semantic HTML structure
 
-## 📁 Template Structure
+## Template Structure
 
 ```
 portfolio-template/
@@ -65,7 +65,7 @@ portfolio-template/
 └── README.md               # This documentation
 ```
 
-## 🏠 Main Page (index.html) Sections
+## Main Page (index.html) Sections
 
 ### 1. **Hero Section**
 - Professional headshot area
@@ -103,7 +103,7 @@ portfolio-template/
 - Availability status
 - Professional location
 
-## 🔍 Deep Dive Pages
+## Deep Dive Pages
 
 Each specialized page follows a consistent, story-driven structure:
 
@@ -167,43 +167,43 @@ Each specialized page follows a consistent, story-driven structure:
 
 ### Page-Specific Content:
 
-#### 🐍 `python.html` - Python & Automation
+#### `python.html` - Python & Automation
 - Data cleaning and preprocessing projects
 - Automation scripts and workflows
 - API integrations and web scraping
 - Statistical analysis and modeling
 
-#### 📊 `excel.html` - Excel Mastery
+#### `excel.html` - Excel Mastery
 - Advanced formula implementations
 - Dynamic dashboards and pivot tables
 - VBA automation examples
 - Financial modeling projects
 
-#### 📈 `powerbi.html` - Business Intelligence
+#### `powerbi.html` - Business Intelligence
 - Interactive dashboard portfolios
 - DAX calculations and measures
 - Data modeling best practices
 - Executive reporting examples
 
-#### 📉 `visualizations.html` - Data Storytelling
+#### `visualizations.html` - Data Storytelling
 - Chart design principles in action
 - Before/after visualization improvements
 - Industry-specific dashboard examples
 - Color theory and accessibility considerations
 
-#### 📐 `statistics.html` - Statistical Analysis
+#### `statistics.html` - Statistical Analysis
 - Hypothesis testing case studies
 - A/B testing implementations
 - Regression analysis projects
 - Probability modeling examples
 
-#### 🤖 `machinelearning.html` - Predictive Analytics
+#### `machinelearning.html` - Predictive Analytics
 - End-to-end ML project workflows
 - Model selection and validation
 - Feature engineering techniques
 - Production deployment examples
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### Method 1: Fork & Deploy (Recommended)
 
@@ -253,7 +253,7 @@ Each specialized page follows a consistent, story-driven structure:
    - Open `index.html` in your web browser
    - Refresh after each change to see updates
 
-## 🎨 Customization Guide
+## Customization Guide
 
 ### Personalizing Your Content
 
@@ -341,7 +341,7 @@ that would make it more visually appealing to hiring managers."
 </form>
 ```
 
-## 💡 Best Practices for Data Portfolios
+## Best Practices for Data Portfolios
 
 ### Content Strategy
 - **Quality over quantity**: 3-5 strong projects beat 10 mediocre ones
@@ -362,7 +362,7 @@ that would make it more visually appealing to hiring managers."
 - **Error-free content**: Proofread everything multiple times
 - **Contact clarity**: Make it easy for recruiters to reach you
 
-## 🛠️ Recommended Tools & Resources
+## 🛠Recommended Tools & Resources
 
 ### Development & Editing
 - **VS Code**: Free, powerful code editor with HTML/CSS support
@@ -385,7 +385,7 @@ that would make it more visually appealing to hiring managers."
 - **PageSpeed Insights**: Optimize loading times
 - **Lighthouse**: Comprehensive website quality audit
 
-## 📈 Portfolio Success Metrics
+## Portfolio Success Metrics
 
 Track these KPIs to measure your portfolio's effectiveness:
 
@@ -401,7 +401,7 @@ Track these KPIs to measure your portfolio's effectiveness:
 - **Freelance inquiries**: Consulting or project-based opportunities
 - **Speaking opportunities**: Conference talks or community presentations
 
-## 🤝 Contributing to This Template
+## Contributing to This Template
 
 We welcome contributions that make this template better for the data community!
 
@@ -420,7 +420,7 @@ We welcome contributions that make this template better for the data community!
 - Integration examples (Google Analytics, contact forms)
 - Multilingual support
 
-## 🌍 Community & Support
+## Community & Support
 
 ### Getting Help
 - **GitHub Issues**: Report bugs or request features
@@ -452,9 +452,9 @@ This project is released under the **MIT License**.
 - ❌ **Sell the template as-is**: Don't package and sell without adding significant value
 - ❌ **Remove the license**: Keep the LICENSE file in your repository
 
-## 👨‍💻 About the Creator
+## About the Creator
 
-Created with love and zero gatekeeping by **[Your Name]** - a data analyst passionate about democratizing access to professional portfolio tools.
+Created with love and zero gatekeeping by **Princilla Abena Koranteng** - a self-data analyst passionate about democratizing data analytics across Africa.
 
 **Connect with me:**
 - LinkedIn: [linkedin.com/in/princilla-abena-koranteng](https://www.linkedin.com/in/princilla-abena-koranteng/)
@@ -467,7 +467,7 @@ If this template helped you build your data portfolio, please give it a star! It
 
 ---
 
-**Ready to build your standout data portfolio? Fork this repo and start customizing today!** 🚀
+**Ready to build your standout data portfolio? Fork this repo and start customizing today!** 
 
 *Last updated: August 2025*
 ```
