@@ -510,7 +510,6 @@ that would make it more visually appealing to hiring managers."
 </form>
 ```
 
-```markdown
 ## 💡 Best Practices for Data Portfolios
 
 ### Content Strategy
