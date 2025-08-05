@@ -590,7 +590,6 @@ We welcome contributions that make this template better for the data community!
 - Multilingual support
 
 ## 🌍 Community & Support
-
 ### Getting Help
 - **GitHub Issues**: Report bugs or request features
 - **Discussions**: Ask questions and share portfolio examples
@@ -598,15 +597,10 @@ We welcome contributions that make this template better for the data community!
 
 ### Showcase Your Portfolio
 Built something amazing with this template? We'd love to see it!
-- Tag [@YourHandle](https://linkedin.com/in/yourname) on LinkedIn
-- Use hashtag #OpenSourcePortfolio
-- Submit to our community showcase
 
 ### Success Stories
 *"This template helped me land my first data analyst role at a fintech startup!"* - Sarah K., Nigeria
-
 *"I customized this for my consulting business and now get 3x more client inquiries."* - David M., Kenya
-
 *"Finally, a portfolio template that doesn't cost a fortune and actually looks professional."* - Amara L., Ghana
 
 ## 📄 License & Attribution
@@ -614,19 +608,17 @@ Built something amazing with this template? We'd love to see it!
 This project is released under the **MIT License**. 
 
 ### What this means:
-- ✅ **Use it**: For personal or commercial projects
-- ✅ **Modify it**: Customize to your heart's content
-- ✅ **Share it**: Help others in the data community
-- ✅ **No attribution required**: Though we appreciate credit!
+✅ **Use it**: For personal or commercial projects
+✅ **Modify it**: Customize to your heart's content
+✅ **Share it**: Help others in the data community
+✅ **No attribution required**: Though we appreciate credit!
 
 ### What you can't do:
 - ❌ **Sell the template as-is**: Don't package and sell without adding significant value
 - ❌ **Remove the license**: Keep the LICENSE file in your repository
 
 ## 👨‍💻 About the Creator
-
 Created with love and zero gatekeeping by **[Your Name]** - a data analyst passionate about democratizing access to professional portfolio tools.
-
 **Connect with me:**
 - LinkedIn: [linkedin.com/in/princilla-abena-koranteng](https://www.linkedin.com/in/princilla-abena-koranteng/)
 - GitHub: [@YourGitHubHandle](https://github.com/yourusername)
@@ -635,7 +627,6 @@ Created with love and zero gatekeeping by **[Your Name]** - a data analyst passi
 ---
 
 ## ⭐ Star This Repository
-
 If this template helped you build your data portfolio, please give it a star! It helps other analysts discover this resource.
 
 ---
