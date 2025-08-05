@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python & R Projects</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      background: rgba(168, 85, 247, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-number {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .project-description {
+      color: #d4d4d8;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-tag {
+      background: rgba(168, 85, 247, 0.1);
+      color: #a855f7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #a1a1aa;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+    }
+
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Toggle Styles */
+    .project-toggles {
+      margin-top: 1.5rem;
+    }
+
+    .toggle-section {
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+    }
+
+    .toggle-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .toggle-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-btn.active .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 1px solid rgba(168, 85, 247, 0.2);
+      border-right: 1px solid rgba(168, 85, 247, 0.2);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 0 0 12px 12px;
+      transition: all 0.4s ease;
+      margin-top: -1px;
+    }
+
+    .toggle-content.active {
+        max-height: none;
+        padding: 1.5rem;
+    }
+
+    .toggle-content p {
+      color: #d4d4d8;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      background: rgba(168, 85, 247, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .github-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+
+    .github-icon {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-elements">
+    <div class="floating-element" style="width: 60px; height: 60px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-element" style="width: 40px; height: 40px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+    <div class="floating-element" style="width: 80px; height: 80px; top: 80%; left: 60%; animation-delay: 4s;"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <a href="index.html#projects" class="back-link">
+        ← Back to Portfolio
+      </a>
+      <h1 class="section-title">SQL & NOSQL Projects</h1>
+      <p class="subtitle">Database solutions that drive business intelligence and scalable data 
+        architecture</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">1</div>
+          <h3 class="project-title">Designing a Store Base</h3>
+        </div>
+        
+        <p class="project-description">
+          In this project, a store base was designed with preferred entries as store items, while 
+          employing the use of select statements to order the items by price, showing at least one 
+          statistic about the items.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">SQL</span>
+          <span class="tech-tag">Data Analysis</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">MYSQL Server</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Project Documentation</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <h1>+ Mall Database Setup and Basic Analytics + </h1>
+
+<h2>Objective</h2>
+<p>
+This SQL project involves creating a simple database for a fictional shopping mall, inserting item data,
+ and performing basic statistical queries. It includes commands to initialize the database, create 
+ tables, insert records, and retrieve useful metrics.
+</p>
+
+<h2>Step 1: Create the Database</h2>
+<pre><code>-- Create a new database
+CREATE DATABASE mall;
+</code></pre>
+<p>
+This command initializes a new database named <code>mall</code> for storing structured data about 
+products sold in the mall.
+</p>
+
+<h2>Step 2: Select the Database</h2>
+<pre><code>-- Select the database to work with
+USE mall;
+</code></pre>
+<p>
+The <code>USE</code> command sets <code>mall</code> as the active database context for upcoming 
+operations.
+</p>
+
+
+<h2>Step 3: Create the Product Table</h2>
+<pre><code>CREATE TABLE tospin (
+  id INTEGER PRIMARY KEY,
+  name TEXT,
+  price FLOAT,
+  quantity INTEGER,
+  sales INTEGER
+);
+</code></pre>
+<p>
+This command creates a table called <code>tospin</code> to store products with attributes like ID, 
+name, price, available quantity, and number of sales.
+</p>
+
+<h2>Step 4: Insert Data</h2>
+<pre><code>INSERT INTO tospin VALUES (1, "Avatar Game Box", 2000, 40, 30);
+INSERT INTO tospin VALUES (2, "handbags", 200, 40, 70);
+INSERT INTO tospin VALUES (3, "Detergent", 100, 50, 50);
+-- ... (and so on up to 25 rows)
+INSERT INTO tospin VALUES (25, "Pencil Case", 10, 100, 900);
+</code></pre>
+
+<p>
+A total of 25 products are added to the <code>tospin</code> table, covering a mix of household goods, 
+tech items, and stationery.
+</p>
+
+<h2>Step 5: Perform Analytics</h2>
+
+<h4>Maximum Price</h4>
+<pre><code>SELECT max(price) FROM tospin;</code></pre>
+<p>Returns the highest priced item in the store.</p>
+
+<h4>Minimum Price</h4>
+<pre><code>SELECT min(price) FROM tospin;</code></pre>
+<p>Returns the lowest priced item in the store.</p>
+
+<h4>Average Price</h4>
+<pre><code>SELECT avg(price) FROM tospin;</code></pre>
+<p>Calculates the average price of all listed products.</p>
+
+<h4>Total Quantity in Stock</h4>
+<pre><code>SELECT sum(quantity) FROM tospin;</code></pre>
+<p>Gives the total count of all item units available in the mall.</p>
+
+<h4>Number of Named Products</h4>
+<pre><code>SELECT count(name) FROM tospin;</code></pre>
+<p>Returns the number of products that have a non-null name in the table.</p>
+
+<h2>Conclusion</h2>
+<p>
+This project demonstrated how to use basic SQL commands to build a database from scratch, populate it 
+with structured data, and generate simple insights using aggregate functions like <code>MAX()</code>, <code>MIN()</code>, <code>AVG()</code>, <code>SUM()</code>, and <code>COUNT()</code>.
+</p>
+
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>All the technical steps behind this project, including data cleaning, exploratory data 
+                analysis, feature engineering, model training, and evaluation are fully documented in a 
+                Jupyter Notebook. I haven't included the full notebook here because it contains 
+                visualizations, code cells, and outputs that won’t render properly in this format.
+                
+                <p>
+                    If you're interested in seeing the complete process or even replicating the results step 
+                    by step, you can view or download the notebook from my GitHub repository below:
+                </p>
+                
+                <p>
+                    <a href="https://github.com/alairdata/Designing-a-Store-Base/blob/main/Designing%20a%20store%20base%20-%20Princilla%20Abena%20Koranteng.sql" class="github-link" target="_blank">
+                    <span class="github-icon">⭐</span>
+                    View on GitHub
+                    </a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">2</div>
+          <h3 class="project-title">Data Dig Project On Winston's Donut Logs
+          </h3>
+        </div>
+        
+        <p class="project-description">
+            This is a project that creates a database and a table in MySQL to store logs of donuts 
+            eaten by a person named Winston throughout his life. The purpose of this project is to 
+            practice creating a database, defining a table schema, and inserting data into it using 
+            SQL commands.    
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Algorithms</span>
+          <span class="tech-tag">Machine Learning</span>
+          <span class="tech-tag">Data Science</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p> <h1>+ DataDig: Donut Consumption Analysis with MySQL +</h1>
+
+<h2>Project Objective</h2>
+<p>
+  <strong>DataDig</strong> is a fun yet technically rich SQL project focused on database creation, schema design, and structured data insertion. As a data analyst, this project showcases your ability to set up a robust data foundation from scratch using MySQL. Through the lens of Winston's lifelong donut-eating habits, the project demonstrates how to build a query-ready dataset with real-world structure and narrative.
+</p>
+
+<h2>Project Summary</h2>
+<p>
+  This project involves:
+</p>
+<ul style="margin-left: 2rem;"></ul>
+  <li>Creating a new MySQL database called <code>DataDig</code></li>
+  <li>Designing and implementing a structured table: <code>winstons_donut_logs</code></li>
+  <li>Populating the table with time-series data tracking donut consumption</li>
+</ul>
+
+<p>
+  The final product is a clean, well-structured database that tracks the evolution of Winston’s donut eating behavior over 31 life stages, incorporating age, context, and life status.
+</p>
+
+<h2>Technologies Used</h2>
+<ul style="margin-left: 2rem;"></ul>
+  <li><strong>Database:</strong> MySQL</li>
+  <li><strong>Client Tool:</strong> MySQL Workbench or CLI</li>
+  <li><strong>Language:</strong> SQL</li>
+</ul>
+
+<p>
+<h2>Table Schema</h2>
+<p>
+  The table <code>winstons_donut_logs</code> includes the following fields:
+</p>
+<ul style="margin-left: 2rem;"></ul>
+  <li><code>id</code> – Primary key (INT)</li>
+  <li><code>status</code> – Life stage or status of Winston (VARCHAR)</li>
+  <li><code>years_old</code> – Age at the time of record (INT)</li>
+  <li><code>donuts_eaten</code> – Number of donuts consumed (INT)</li>
+  <li><code>reason</code> – Contextual details explaining the consumption behavior (TEXT)</li>
+</ul>
+
+<p>
+<h2>Implementation Overview</h2>
+
+<ul style="margin-left: 2rem;"></ul>
+  <li><strong>Database Initialization:</strong>
+    <pre><code>CREATE DATABASE DataDig;
+USE DataDig;</code></pre>
+  </li>
+
+  <p>
+  <li><strong>Table Creation:</strong>
+    <pre><code>CREATE TABLE winstons_donut_logs (
+  id INT PRIMARY KEY,
+  status VARCHAR(255),
+  years_old INT,
+  donuts_eaten INT,
+  reason TEXT
+);
+</code></pre>
+  </li>
+<p>
+
+  <li><strong>Data Insertion:</strong>
+    <p>
+      31 rows of data were inserted to reflect Winston's donut consumption at each life stage.
+    </p>
+    <pre><code>INSERT INTO winstons_donut_logs (id, status, years_old, donuts_eaten, reason)
+VALUES (1, 'Toddler', 3, 0, 'Too young for donuts'),
+       (2, 'Kindergartener', 5, 1, 'Tried donut for the first time'),
+       ...
+       (31, 'Senior Citizen', 70, 2, 'Still enjoying life one donut at a time');</code></pre>
+    <p>(Note: The full script includes all 31 rows in the actual SQL file.)</p>
+  </li>
+</ol>
+
+<h2>Analytical Value</h2>
+<p>
+  While humorous in context, this project mirrors real-world data logging use cases in behavioral analysis and consumption tracking. It teaches fundamental skills like:
+</p>
+<ul style="margin-left: 2rem;"></ul>
+  <li>Database schema design and planning</li>
+  <li>SQL syntax and execution flow</li>
+  <li>Inserting, organizing, and maintaining structured records</li>
+</ul>
+
+<p>
+<h2>Getting Started</h2>
+<ul style="margin-left: 2rem;"></ul>
+  <li>Ensure MySQL is installed and running on your machine</li>
+  <li>Clone this project’s repository or copy the SQL script</li>
+  <li>Open MySQL Workbench or terminal</li>
+  <li>Execute the script step-by-step:
+    <ul style="margin-left: 2rem;"></ul>
+      <li>Start MySQL: <code>mysql.server start</code></li>
+      <li>Login: <code>mysql -u root</code></li>
+      <li>Create and use database: <code>CREATE DATABASE DataDig; USE DataDig;</code></li>
+      <li>Create the table and insert data</li>
+    </ul>
+  </li>
+</ol>
+
+<p>
+<h2>Extension Possibilities</h2>
+<ul style="margin-left: 2rem;"></ul>
+  <li>Use <code>SELECT</code> queries to analyze donut consumption trends</li>
+  <li>Visualize donut consumption by age or status using a dashboard tool</li>
+  <li>Apply window functions to track cumulative totals or running averages</li>
+</ul>
+
+<p>
+<h2>Key Takeaways</h2>
+<ul style="margin-left: 2rem;"></ul>
+  <li>Even the simplest data can be transformed into structured, meaningful insights</li>
+  <li>Hands-on SQL projects build a solid foundation for querying and reporting</li>
+  <li>Well-documented schemas and scripts improve maintainability and collaboration</li>
+</ul>
+
+<p>
+<h2>Contributing</h2>
+<p>
+  Have ideas to expand the DataDig database or simulate new behavior patterns? Contributions are welcome. Fork the repo and share your pull request.
+</p>
+
+<h2>License</h2>
+<p>
+  This project is licensed under the MIT License.
+</p>
+
+                </html>
+
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>All the technical steps behind this project, including data cleaning, exploratory data 
+                analysis, feature engineering, model training, and evaluation are fully documented in a 
+                Jupyter Notebook. I haven't included the full notebook here because it contains 
+                visualizations, code cells, and outputs that won’t render properly in this format.
+                
+                <p>
+                    If you're interested in seeing the complete process or even replicating the results step 
+                    by step, you can view or download the notebook from my GitHub repository below:
+                </p>
+                
+                <p>
+                    <a href="https://github.com/alairdata/Data-Dig-Project-On-Winston-s-Donut-Logs" class="github-link" target="_blank">
+                    <span class="github-icon">⭐</span>
+                    View on GitHub
+                    </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <script>
+  function toggleSection(button) {
+    const content = button.nextElementSibling;
+    const isActive = content.classList.contains('active');
+
+    // Close all other toggles in the same project card
+    const projectCard = button.closest('.project-card');
+    const allToggleContents = projectCard.querySelectorAll('.toggle-content');
+    const allToggleButtons = projectCard.querySelectorAll('.toggle-btn');
+
+    allToggleContents.forEach(tc => tc.classList.remove('active'));
+    allToggleButtons.forEach(tb => tb.classList.remove('active'));
+
+    // Toggle the clicked section
+    if (!isActive) {
+      content.classList.add('active');
+      button.classList.add('active');
+
+      // Delay the scroll a little to allow content to expand
+      setTimeout(() => {
+        const yOffset = -100; // Adjust this if you have a sticky navbar
+        const y = button.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }, 200); // delay helps ensure content has rendered
+    }
+  }
+
+  // Add stagger animation to project cards
+  document.addEventListener('DOMContentLoaded', function () {
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.style.animation = 'fadeInUp 0.6s ease forwards';
+    });
+  });
+
+  // Fade-in CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .project-card {
+      opacity: 0;
+    }
+  `;
+  document.head.appendChild(style);
+</script>

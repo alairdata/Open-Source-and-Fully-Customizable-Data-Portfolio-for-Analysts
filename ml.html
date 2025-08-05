@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL & NoSQL Projects</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      background: rgba(168, 85, 247, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-number {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .project-description {
+      color: #d4d4d8;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-tag {
+      background: rgba(168, 85, 247, 0.1);
+      color: #a855f7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #a1a1aa;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+    }
+
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Toggle Styles */
+    .project-toggles {
+      margin-top: 1.5rem;
+    }
+
+    .toggle-section {
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+    }
+
+    .toggle-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .toggle-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-btn.active .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 1px solid rgba(168, 85, 247, 0.2);
+      border-right: 1px solid rgba(168, 85, 247, 0.2);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 0 0 12px 12px;
+      transition: all 0.4s ease;
+      margin-top: -1px;
+    }
+
+    .toggle-content.active {
+      max-height: 10000px;
+      padding: 1.5rem;
+    }
+
+    .toggle-content p {
+      color: #d4d4d8;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      background: rgba(168, 85, 247, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .github-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+
+    .github-icon {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-elements">
+    <div class="floating-element" style="width: 60px; height: 60px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-element" style="width: 40px; height: 40px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+    <div class="floating-element" style="width: 80px; height: 80px; top: 80%; left: 60%; animation-delay: 4s;"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <a href="index.html#projects" class="back-link">
+        ← Back to Portfolio
+      </a>
+      <h1 class="section-title">Machine Learning Projects</h1>
+      <p class="subtitle">End to End machine learning systems built for automation, insight, and measurable impact</p>
+    </div>
+
+        <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">1</div>
+          <h3 class="project-title">CO2-Emissions-Prediction-Model</h3>
+        </div>
+        
+        <p class="project-description">
+          This project uses supervised machine learning techniques with multiple regression models to predict CO2 emissions in Canada, it includes data cleaning, encoding, analyzing and visualization to identify patterns, resulting in a model that can make accurate predictions.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Artifical Intelligence</span>
+          <span class="tech-tag">Regression Models</span>
+          <span class="tech-tag">Data Science</span>
+          <span class="tech-tag">Machine Learning</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Project Documentation</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <h1>+ CO2-Emissions-Prediction-Model +</h1>
+
+<h2>Overview</h2>
+
+<p>
+As part of my journey into machine learning and data science, I worked on a project where the main goal 
+was to accurately predict CO2 emissions from vehicles using supervised machine learning techniques. This
+project was not just a technical exercise, it was also an opportunity for me to develop a complete data 
+pipeline from raw data to a predictive model, and to tell a compelling story from the data.
+
+</p>
+<h2>Why this Project?</h2>
+
+<p>
+I chose this problem because climate change is a global issue, and CO2 emissions from vehicles are a 
+major contributor. Being able to predict CO2 emissions based on vehicle characteristics can help 
+policymakers, manufacturers, and even consumers make more informed decisions. I wanted to explore how 
+data science could contribute meaningfully to environmental insights.
+</p>
+
+<h1>+ CO2-Emissions Project Process+</h1>
+<h2>Step 1: Data Acquisition and Understanding</h2>
+
+<p>
+I started by sourcing a publicly available dataset from the Government of Canada, which contained 
+information on various vehicles sold in the country. The dataset included features like:
+</p>
+
+<ul style="margin-left: 2rem;">
+  <li><strong>Make</strong> and <strong>Model</strong> of the vehicle</li>
+  <li><strong>Engine Size (L)</strong></li>
+  <li><strong>Number of Cylinders</strong></li>
+  <li><strong>Fuel Consumption</strong> (City, Highway, and Combined)</li>
+  <li><strong>Fuel Type</strong></li>
+  <li><strong>Vehicle Class</strong></li>
+  <li><strong>CO2 Emissions (g/km)</strong></li>
+</ul>
+
+<p>
+Before doing anything technical, I spent time familiarizing myself with the dataset. Understanding what 
+each column meant helped me form hypotheses and intuitions about what might influence CO2 emissions.
+</p>
+
+<h2>Step 2: Data Cleaning and Preparation</h2>
+
+<p>
+This was a crucial step. Real-world data is almost never perfect.
+</p>
+
+<ul style="margin-left: 2rem;">
+  <li><strong>Duplicate Removal:</strong> I discovered that some vehicle records were repeated. I 
+    removed these duplicates to ensure my analysis and models wouldn't be biased by redundancy.</li>
+  <li><strong>Missing Values:</strong> Surprisingly, there were no missing values in the dataset. This 
+    was a relief and allowed me to proceed without imputation.</li>
+  <li><strong>Exploratory Data Analysis (EDA):</strong>  
+    I conducted an EDA using tools like <code>seaborn</code>, <code>matplotlib</code>, and <code>
+        missingno</code>.  
+    <ul style="margin-left: 2rem;">
+      <li>I created <strong>pairplots</strong> to visually inspect how variables like engine size and 
+        fuel consumption relate to CO2 emissions.</li>
+      <li>I used <strong>box plots</strong> to identify outliers.</li>
+      <li>A <strong>heatmap of the correlation matrix</strong> helped me understand which variables 
+        were highly correlated. This helped me detect <em>multicollinearity</em>—a situation where two 
+        or more independent variables are highly correlated, which can distort regression results. To 
+        solve this, I dropped some features that were too similar.</li>
+    </ul>
+  </li>
+</ul>
+<p>
+
+<h2>Step 3: Feature Engineering</h2>
+
+<p>
+To prepare the dataset for modeling, I needed to convert non-numeric data into a machine-readable 
+format:
+</p>
+
+<ul style="margin-left: 2rem;">
+  <li><strong>One-Hot Encoding:</strong>  
+    I used <code>pandas.get_dummies()</code> to convert categorical variables such as <code>Fuel 
+        Type</code> and <code>Vehicle Class</code> into binary columns.  
+    For example, if there were five fuel types, I created five separate columns, each one indicating 
+    whether a car used that type.
+  </li>
+</ul>
+
+<p>
+This process is essential because machine learning algorithms require numerical inputs. Encoding allowed 
+the models to “understand” the differences between, say, gasoline and electric vehicles.
+</p>
+
+<h2>Step 4: Model Selection and Training</h2>
+
+<p>
+This was the most exciting part for me, actually building models to predict emissions.
+</p>
+
+<p>I tried several regression models:</p>
+
+<ol style="margin-left: 2rem;">
+  <li><strong>Linear Regression:</strong>  
+    Assumes a straight-line relationship between inputs (like engine size) and the output (CO2 emissions). 
+    It was a good baseline, but it might oversimplify the relationships.
+  </li>
+  <li><strong>Ridge Regression:</strong>  
+    Introduced <strong>L2 regularization</strong> which penalizes large coefficients. This helps prevent 
+    overfitting, especially in datasets with multicollinearity.
+  </li>
+  <li><strong>Lasso Regression:</strong>  
+    Uses <strong>L1 regularization</strong>. Unlike Ridge, Lasso can reduce some coefficients to zero, 
+    effectively performing feature selection.
+  </li>
+  <li><strong>ElasticNet Regression:</strong>  
+    Combines both L1 and L2 penalties, balancing the strengths of Ridge and Lasso.
+  </li>
+  <li><strong>Gradient Boosting Regression:</strong>  
+    The most powerful model I used. It builds an ensemble of decision trees in sequence, each one trying 
+    to correct the errors of the previous one. The final result was incredibly accurate.
+  </li>
+</ol>
+<p>
+
+<h2>Step 5: Model Evaluation</h2>
+
+<p>
+To evaluate the models, I used the following metrics:
+</p>
+
+<ul style="margin-left: 2rem;">
+  <li><strong>R-squared (R²):</strong> Measures how well the predicted values fit the actual data.</li>
+  <li><strong>Mean Squared Error (MSE):</strong> Measures the average of the squares of the errors 
+    between predicted and actual values.</li>
+</ul>
+<p>
+
+<p>
+I split the data into <strong>training and test sets</strong> and evaluated all models on both. 
+The <strong>Gradient Boosting model</strong> emerged as the clear winner, achieving:
+</p>
+
+<ul style="margin-left: 2rem;">
+  <li><strong>R² Score:</strong> 0.995</li>
+  <li><strong>MSE:</strong> 17.36</li>
+</ul>
+
+<p>
+This means the model explained 99.5% of the variance in the test data and had a very low error 
+margin, remarkable performance for a regression task.
+</p>
+
+<h2>Step 6: Reflection and Business Relevance</h2>
+
+<p>
+From a business or policy standpoint, this model can be used to:
+</p>
+
+<ul style="margin-left: 2rem;">
+  <li><strong>Predict CO2 emissions</strong> for new or hypothetical vehicle designs</li>
+  <li><strong>Guide regulatory policies</strong> by identifying features that disproportionately 
+    increase emissions</li>
+  <li><strong>Help consumers</strong> choose more environmentally friendly vehicles by estimating 
+    emissions based on specs</li>
+</ul>
+
+<h2 style="margin-top: 2rem;">Technical Stack</h2>
+
+<ul style="margin-left: 2rem;">
+  <li><strong>Python 3.8+</strong></li>
+  <li><strong>pandas</strong> and <strong>numpy</strong> for data manipulation</li>
+  <li><strong>matplotlib</strong>, <strong>seaborn</strong>, and <strong>missingno</strong> for 
+    visualization</li>
+  <li><strong>scikit-learn</strong> for building and evaluating regression models</li>
+</ul>
+
+<h2 style="margin-top: 2rem;">Usage Instructions</h2>
+
+<ul style="margin-left: 2rem;">
+  <li>Clone or download the repository from GitHub</li>
+  <li>Install the required libraries using <code>pip install -r requirements.txt</code></li>
+  <li>Run the Jupyter Notebook or Python script to view EDA, modeling steps, and results</li>
+</ul>
+
+<p>
+<h2 style="margin-top: 2rem;">What I Learned (And you can learn too)</h2>
+
+<p style="margin-bottom: 1rem;">
+  This project taught me how to:
+</p>
+
+<ul style="margin-left: 2rem;">
+  <li>Clean and prepare real-world datasets</li>
+  <li>Perform statistical and visual analysis to understand patterns</li>
+  <li>Choose and tune the right machine learning models for regression</li>
+  <li>Evaluate models using industry-standard metrics</li>
+  <li>Communicate complex results in a simple, clear way</li>
+</ul>
+<p> 
+
+<p>
+It also deepened my appreciation for how much effort goes into preparing data before the modeling 
+stage even begins. The modeling part was just the cherry on top, real value lies in understanding the 
+data.
+</p>
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>All the technical steps behind this project, including data cleaning, exploratory data 
+                analysis, feature engineering, model training, and evaluation are fully documented in a 
+                Jupyter Notebook. I haven't included the full notebook here because it contains 
+                visualizations, code cells, and outputs that won’t render properly in this format.
+                
+                <p>
+                    If you're interested in seeing the complete process or even replicating the results step 
+                    by step, you can view or download the notebook from my GitHub repository below:
+                </p>
+                
+                <p>
+                    <a href="https://github.com/alairdata/CO2-Emissions-Prediction-Model/blob/main/Regression%20-%20Carbon%20Dioxide%20(CO2)%20Project.ipynb" class="github-link" target="_blank">
+                    <span class="github-icon">⭐</span>
+                    View on GitHub
+                    </a>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">2</div>
+          <h3 class="project-title">Prediction of Cancer Types using Gene Expession</h3>
+        </div>
+        
+        <p class="project-description">
+            This has been a machine learning quest to classify cancer types using gene expression data, 
+            utilizing powerful tools and techniques to preprocess, train and evaluate models. The 
+            ultimate goal, to save lives through early diagnosis with high accuracy and precision.        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Algorithms</span>
+          <span class="tech-tag">Machine Learning</span>
+          <span class="tech-tag">Data Science</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p> <h1>+ Cancer Type Classification Using Gene Expression Data +</h1>
+                <h2>Overview</h2>
+                <p>
+                    As part of my journey into advanced machine learning and bioinformatics, I undertook a 
+                    project focused on classifying cancer types based on gene expression data (RNA sequencing). 
+                    This was not only a technically enriching experience but also a meaningful one—tackling a 
+                    problem that sits at the intersection of healthcare and data science. The idea was to use 
+                    machine learning to support early diagnosis, which is critical for improving survival rates.
+                </p>
+                <p>
+                    I wanted to show that with the right data and the right tools, we can build systems that 
+                    help doctors and researchers understand patterns hidden deep within genetic data, and 
+                    ultimately support faster, more accurate medical decisions.
+                </p>
+
+                <h2>Why This Project?</h2>
+                <p>
+                    Cancer remains one of the leading causes of death globally. A large part of the challenge 
+                    is the delay in diagnosis and the inability to detect cancer types early enough for 
+                    effective treatment. 
+                </p>
+                <p>
+                    RNA sequencing allows us to see the expression levels of thousands of genes at once. Since 
+                    different types of cancer have unique gene expression profiles, it is possible to build 
+                    machine learning models that learn these patterns and classify the type of cancer a person 
+                    has based on the data.
+                </p>
+                <p>
+                    My goal was to use supervised learning techniques to build a classifier that can 
+                    distinguish between different cancer types, and evaluate which model performed best.
+                </p>
+
+                <h2>Problem Statement</h2>
+                <p>
+                    The project aimed to solve the problem of late cancer diagnosis by using machine learning 
+                    models trained on RNA-seq data to predict cancer types based on gene expression profiles.
+                </p>
+                <p>
+                    With enough training data, a reliable model can be built to recognize patterns associated 
+                    with specific cancer types, which can then be used in screening tools or diagnostic systems.
+                </p>
+
+                <h2>Objectives</h2>
+                    <ul style="margin-left: 2rem;">
+                        <li>To classify cancer types using RNA-seq gene expression data.</li>
+                        <li>To compare the performance of different machine learning models.</li>
+                        <li>To understand how preprocessing impacts classification accuracy.</li>
+                        <li>To interpret the results and reflect on real-world applicability.</li>
+                    </ul>
+
+                
+                <p>
+                <h2>Dataset Description</h2>
+
+                <p>
+                    The dataset was sourced from the 
+                    <a href="https://archive.ics.uci.edu/" target="_blank">UCI Machine Learning Repository</a>, 
+                    and contains normalized RNA-seq expression data for patients with different cancer types. 
+                    Each row represents a patient, and each column corresponds to a gene’s expression level.
+                </p>
+
+                <p>The target variable is the type of cancer, categorized as:</p>
+
+                <ul style="margin-left: 2rem;">
+                    <li><strong>BRCA</strong> (Breast Cancer)</li>
+                    <li><strong>KIRC</strong> (Kidney Renal Clear Cell Carcinoma)</li>
+                    <li><strong>LUAD</strong> (Lung Adenocarcinoma)</li>
+                    <li><strong>PRAD</strong> (Prostate Adenocarcinoma)</li>
+                    <li><strong>COAD</strong> (Colon Adenocarcinoma)</li>
+                </ul>
+
+                <p>
+               <h2>Step 1: Data Exploration and Preprocessing</h2>
+
+                <ul style="margin-left: 2rem;">
+                    <li><strong>Missing Values:</strong> There were no missing values.</li>
+                    <li><strong>Standardization Need:</strong> I noticed that although gene expression values 
+                        had a mean near 0, their standard deviations were far from 1. Since many machine learning 
+                        models perform better when features are standardized, I planned to scale the data later.</li>
+                    <li><strong>Class Balance:</strong> I confirmed the cancer types were relatively balanced 
+                        and wouldn’t require special adjustments.</li>
+                    <li><strong>Label Encoding:</strong> I converted string labels to numeric values for model 
+                        compatibility.</li>
+                    <li><strong>Train-Test Split:</strong> I split the dataset to ensure unbiased evaluation.</li>
+                </ul>
+
+                <p>
+                <h2>Step 2: Feature Scaling</h2>
+                <p>
+                    I used <code>StandardScaler</code> from <code>sklearn</code> to normalize the dataset. 
+                    This was essential because gene expression levels vary across different genes, and scaling 
+                    helps models train better and faster without being biased by features on larger numeric scales.
+                </p>
+
+                <h2>Step 3: Model Building and Evaluation</h2>
+                <ul style="margin-left: 2rem;">
+                    <li><strong>Logistic Regression (logregpipe):</strong> Simple yet powerful. With proper scaling, 
+                        it gave surprisingly high performance.</li>
+                    <li><strong>XGBoost (xgbpipe):</strong> A gradient boosting algorithm that performed 
+                        exceptionally well. It combines multiple weak learners into a strong ensemble.</li>
+                    <li><strong>Support Vector Classifier (svcpipe):</strong> Robust model for high-dimensional 
+                        gene expression data, performed well and was easy to interpret.</li>
+                </ul>
+                
+                <p>
+                <h2>Step 4: Model Tuning</h2>
+                <ul style="margin-left: 2rem;">
+                    <li>Used <code>Pipelines</code> to streamline the preprocessing and modeling stages.</li>
+                    <li>Applied <code>RandomizedSearchCV</code> to find optimal hyperparameters.</li>
+                    <li>Used cross-validation to ensure robustness.</li>
+                </ul>
+                
+                <p>
+                <h2>Step 5: Metrics and Results</h2>
+                <ul style="margin-left: 2rem;">
+                    <li><strong>F1 Score:</strong> Balanced precision and recall.</li>
+                    <li><strong>Precision / Recall</strong></li>
+                    <li><strong>Confusion Matrix</strong></li>
+                    <li><strong>Classification Report</strong></li>
+                    <li><strong>ROC Curve</strong> using <code>yellowbrick</code> and <code>sklearn</code>.</li>
+                </ul>
+
+                <p>
+                <h2>Top Performers:</h2>
+                <ul style="margin-left: 2rem;">
+                    <li><strong>Logistic Regression:</strong> F1 Score = 1.0</li>
+                    <li><strong>XGBoost:</strong> F1 Score = 0.9938</li>
+                    <li><strong>SVC:</strong> Close third</li>
+                </ul>
+
+                <p>
+                <h2>Reflection and Learnings</h2>
+                <ul style="margin-left: 2rem;">
+                    <li>How to clean and process real-world biomedical datasets</li>
+                    <li>How to structure and evaluate ML pipelines</li>
+                    <li>How to interpret model performance in the context of medicine</li>
+                    <li>How powerful tree-based ensembles like XGBoost are</li>
+                    <li>How data science can be applied to life-saving use cases</li>
+                </ul>
+
+                <p>
+                <h2>Conclusion</h2>
+                <p>
+                This project demonstrated how gene expression data can be used to classify cancer types with 
+                remarkable accuracy. 
+                The machine learning models I built achieved F1 scores close to perfect, showing promise for 
+                early detection systems. 
+                In the real world, such systems could help doctors detect cancer types earlier, personalize 
+                treatments, and ultimately save lives.
+                </p>
+
+                </html>
+
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>All the technical steps behind this project, including data cleaning, exploratory data 
+                analysis, feature engineering, model training, and evaluation are fully documented in a 
+                Jupyter Notebook. I haven't included the full notebook here because it contains 
+                visualizations, code cells, and outputs that won’t render properly in this format.
+                
+                <p>
+                    If you're interested in seeing the complete process or even replicating the results step 
+                    by step, you can view or download the notebook from my GitHub repository below:
+                </p>
+                
+                <p>
+                    <a href="https://github.com/alairdata/Prediction-of-Cancer-Types-using-Gene-Expession" class="github-link" target="_blank">
+                    <span class="github-icon">⭐</span>
+                    View on GitHub
+                    </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+  <script>
+  function toggleSection(button) {
+    const content = button.nextElementSibling;
+    const isActive = content.classList.contains('active');
+
+    // Close all other toggles in the same project card
+    const projectCard = button.closest('.project-card');
+    const allToggleContents = projectCard.querySelectorAll('.toggle-content');
+    const allToggleButtons = projectCard.querySelectorAll('.toggle-btn');
+
+    allToggleContents.forEach(tc => tc.classList.remove('active'));
+    allToggleButtons.forEach(tb => tb.classList.remove('active'));
+
+    // Toggle the clicked section
+    if (!isActive) {
+      content.classList.add('active');
+      button.classList.add('active');
+
+      // Delay the scroll a little to allow content to expand
+      setTimeout(() => {
+        const yOffset = -100; // Adjust this if you have a sticky navbar
+        const y = button.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }, 200); // delay helps ensure content has rendered
+    }
+  }
+
+  // Add stagger animation to project cards
+  document.addEventListener('DOMContentLoaded', function () {
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.style.animation = 'fadeInUp 0.6s ease forwards';
+    });
+  });
+
+  // Fade-in CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .project-card {
+      opacity: 0;
+    }
+  `;
+  document.head.appendChild(style);
+</script>

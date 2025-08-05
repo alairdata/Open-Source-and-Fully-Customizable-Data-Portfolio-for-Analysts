@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL & NoSQL Projects</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      background: rgba(168, 85, 247, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-number {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .project-description {
+      color: #d4d4d8;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-tag {
+      background: rgba(168, 85, 247, 0.1);
+      color: #a855f7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #a1a1aa;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+    }
+
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Toggle Styles */
+    .project-toggles {
+      margin-top: 1.5rem;
+    }
+
+    .toggle-section {
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+    }
+
+    .toggle-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .toggle-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-btn.active .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 1px solid rgba(168, 85, 247, 0.2);
+      border-right: 1px solid rgba(168, 85, 247, 0.2);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 0 0 12px 12px;
+      transition: all 0.4s ease;
+      margin-top: -1px;
+    }
+
+    .toggle-content.active {
+      max-height: 300px;
+      padding: 1.5rem;
+    }
+
+    .toggle-content p {
+      color: #d4d4d8;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      background: rgba(168, 85, 247, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .github-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+
+    .github-icon {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-elements">
+    <div class="floating-element" style="width: 60px; height: 60px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-element" style="width: 40px; height: 40px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+    <div class="floating-element" style="width: 80px; height: 80px; top: 80%; left: 60%; animation-delay: 4s;"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <a href="index.html#projects" class="back-link">
+        ← Back to Portfolio
+      </a>
+      <h1 class="section-title">SQL & NoSQL Projects</h1>
+      <p class="subtitle">Database solutions that drive business intelligence and scalable data architecture</p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">1</div>
+          <h3 class="project-title">Customer Segmentation with RFM Analysis</h3>
+        </div>
+        
+        <p class="project-description">
+          Developed a comprehensive customer segmentation system using RFM (Recency, Frequency, Monetary) analysis to identify high-value customers and at-risk segments. This solution enabled targeted marketing campaigns and improved customer retention strategies.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">SQL CTEs</span>
+          <span class="tech-tag">Percentile Ranking</span>
+          <span class="tech-tag">Data Optimization</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">📄</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Segmented retail customers using RFM (Recency, Frequency, Monetary) analysis. Business teams used this to identify high-value and at-risk customers, resulting in targeted marketing campaigns that increased customer retention by 25% and drove significant revenue growth.</p>
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Used SQL CTEs, CASE statements, and percentile ranking. Ran queries on PostgreSQL with optimized indexing for large transactional data. Implemented automated scoring system using window functions and created materialized views for performance optimization.</p>
+              <a href="https://github.com/yourusername/sql-segmentation" class="github-link" target="_blank">
+                <span class="github-icon">⭐</span>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">2</div>
+          <h3 class="project-title">Sales Performance Dashboard</h3>
+        </div>
+        
+        <p class="project-description">
+          Built an interactive Power BI dashboard powered by optimized SQL queries to analyze regional sales trends, monthly KPIs, and performance metrics. Delivered real-time insights for executive decision-making.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">SQL Server</span>
+          <span class="tech-tag">Power BI</span>
+          <span class="tech-tag">Window Functions</span>
+          <span class="tech-tag">Data Visualization</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">📄</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Created SQL queries to support an interactive Power BI dashboard for analyzing regional sales trends and monthly KPIs. Enabled executive teams to make data-driven decisions with real-time insights, reducing reporting time by 40% and improving strategic planning accuracy.</p>
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Performed data aggregation with GROUP BY, used joins across orders and product tables, and calculated growth with window functions. Implemented stored procedures for automated data refresh and optimized query performance for large datasets.</p>
+              <a href="https://github.com/yourusername/sql-sales-dashboard" class="github-link" target="_blank">
+                <span class="github-icon">⭐</span>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">3</div>
+          <h3 class="project-title">Smart Inventory Management System</h3>
+        </div>
+        
+        <p class="project-description">
+          Designed and implemented a robust inventory tracking system with automated alerts and supplier management. Features real-time stock monitoring, predictive restocking, and comprehensive audit trails.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Database Design</span>
+          <span class="tech-tag">Triggers & Procedures</span>
+          <span class="tech-tag">Automated Alerts</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">📄</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Built a backend database for tracking product inventory levels, restocking events, and supplier delivery statuses. Reduced inventory costs by 30% through predictive analytics and eliminated stockouts with automated alert system.</p>
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Normalized schema design, set up foreign keys and constraints. Automated alerts using SQL triggers and scheduled jobs. Implemented real-time inventory tracking with PostgreSQL and created comprehensive audit trails for compliance.</p>
+              <a href="https://github.com/yourusername/inventory-tracker" class="github-link" target="_blank">
+                <span class="github-icon">⭐</span>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">4</div>
+          <h3 class="project-title">Clickstream Analytics Engine</h3>
+        </div>
+        
+        <p class="project-description">
+          Developed a comprehensive user behavior analysis system using MongoDB to process clickstream data. Identified user journey patterns, drop-off points, and engagement metrics to optimize user experience.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">MongoDB</span>
+          <span class="tech-tag">Aggregation Pipeline</span>
+          <span class="tech-tag">JSON Processing</span>
+          <span class="tech-tag">Behavioral Analytics</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">📄</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Analyzed user behavior from clickstream data to understand page engagement and customer drop-off patterns. Increased conversion rates by 15% through data-driven UX improvements and personalized user experiences.</p>
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Used MongoDB aggregate pipeline: $group, $match, and $project to restructure and query nested JSON data effectively. Processed 50M+ events in real-time with optimized indexing and implemented data streaming for live analytics.</p>
+              <a href="https://github.com/yourusername/mongo-clickstream" class="github-link" target="_blank">
+                <span class="github-icon">⭐</span>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">5</div>
+          <h3 class="project-title">Financial Data Reconciliation System</h3>
+        </div>
+        
+        <p class="project-description">
+          Created an advanced data cleansing and reconciliation system for financial transactions. Implemented automated data quality checks, duplicate detection, and audit-ready reporting for compliance requirements.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">SQL Server</span>
+          <span class="tech-tag">Data Quality</span>
+          <span class="tech-tag">Audit Compliance</span>
+          <span class="tech-tag">ETL Processes</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">📄</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Cleaned and reconciled messy financial records for audit readiness using advanced SQL techniques. Saved 80% of manual processing time and achieved 99.9% data accuracy, ensuring full compliance with financial regulations.</p>
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>Used ROW_NUMBER for deduplication, created views for auditors, and applied CHECK constraints to maintain quality. Implemented automated data validation pipelines and comprehensive error logging for audit compliance.</p>
+              <a href="https://github.com/yourusername/sql-finance-cleaning" class="github-link" target="_blank">
+                <span class="github-icon">⭐</span>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSection(button) {
+      const content = button.nextElementSibling;
+      const isActive = content.classList.contains('active');
+      
+      // Close all other toggles in the same project card
+      const projectCard = button.closest('.project-card');
+      const allToggleContents = projectCard.querySelectorAll('.toggle-content');
+      const allToggleButtons = projectCard.querySelectorAll('.toggle-btn');
+      
+      allToggleContents.forEach(tc => tc.classList.remove('active'));
+      allToggleButtons.forEach(tb => tb.classList.remove('active'));
+      
+      // Toggle the clicked section
+      if (!isActive) {
+        content.classList.add('active');
+        button.classList.add('active');
+      }
+    }
+
+    // Add smooth scroll behavior and enhanced interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add stagger animation to project cards
+      const projectCards = document.querySelectorAll('.project-card');
+      projectCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+        card.style.animation = 'fadeInUp 0.6s ease forwards';
+      });
+    });
+
+    // Add CSS for the fade-in animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .project-card {
+        opacity: 0;
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

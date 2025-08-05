@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python & R Projects</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      background: rgba(168, 85, 247, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.3);
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #a1a1aa;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .projects-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .project-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(168, 85, 247, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #a855f7, #ec4899);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-number {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .project-description {
+      color: #d4d4d8;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-tag {
+      background: rgba(168, 85, 247, 0.1);
+      color: #a855f7;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #a1a1aa;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 1rem;
+      }
+    }
+
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, 0.1);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Toggle Styles */
+    .project-toggles {
+      margin-top: 1.5rem;
+    }
+
+    .toggle-section {
+      margin-bottom: 1rem;
+    }
+
+    .toggle-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: rgba(168, 85, 247, 0.1);
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 12px;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+    }
+
+    .toggle-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .toggle-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-btn.active .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .toggle-content {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 1px solid rgba(168, 85, 247, 0.2);
+      border-right: 1px solid rgba(168, 85, 247, 0.2);
+      border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+      border-radius: 0 0 12px 12px;
+      transition: all 0.4s ease;
+      margin-top: -1px;
+    }
+
+    .toggle-content.active {
+        max-height: none;
+        padding: 1.5rem;
+    }
+
+    .toggle-content p {
+      color: #d4d4d8;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #a855f7;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      background: rgba(168, 85, 247, 0.1);
+      border-radius: 8px;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .github-link:hover {
+      background: rgba(168, 85, 247, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    }
+
+    .github-icon {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-elements">
+    <div class="floating-element" style="width: 60px; height: 60px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-element" style="width: 40px; height: 40px; top: 60%; right: 10%; animation-delay: 2s;"></div>
+    <div class="floating-element" style="width: 80px; height: 80px; top: 80%; left: 60%; animation-delay: 4s;"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <a href="index.html#projects" class="back-link">
+        ← Back to Portfolio
+      </a>
+      <h1 class="section-title">Python & R Projects</h1>
+      <p class="subtitle">Data science and analytical workflows that power automation, predictive insights, and intelligent decision-making</p>
+    </div>
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">1</div>
+          <h3 class="project-title">Superstore Analysis</h3>
+        </div>
+        
+        <p class="project-description">
+          This is an analysis made on a superstore to understand why they had been making losses over 
+          a four year period, yet it had accounts on a substantial amount of sales over the same year 
+          period.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">MatPlotLib</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Sales Data</span>
+          <span class="tech-tag">Automation</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+            <p> <h1>+ Superstore Analysis +</h1>
+                <h2>Overview</h2>
+                <p>
+                
+                <p>Step into the world of a prominent superstore, where everything seemed to be running 
+                smoothly — sales were soaring and customers were flooding through the doors. But behind
+                the scenes, a mystery was brewing. Despite these impressive numbers, the store was 
+                grappling with a huge financial loss.
+                </p>
+                
+                <p>
+                I was brought in as a data analyst to uncover the truth. What I found was both surprising 
+                and eye-opening. Years of data held the clues — and with careful cleaning, analysis, and 
+                storytelling, I unraveled the reasons behind the financial decline and provided a clear 
+                roadmap to fix it.
+                </p>
+        
+                <p>
+                After the initial discovery, I performed in-depth data cleaning to prepare the dataset 
+                for analysis:
+                </p>
+                <ul style="margin-left: 2rem;"></ul>
+                    <li>Checked summary statistics to detect inconsistencies or outliers.</li>
+                    <li>Removed duplicate records for clean and accurate insights.</li>
+                    <li>Added new derived columns for additional context (e.g., profit margins).</li>
+                    <li>Applied data imputation, outlier handling, and normalization techniques.</li>
+                </ul>
+
+                <p>
+                By going through this thorough data cleaning process, we were able to uncover more 
+                information that would have been obscured by the inconsistencies and inaccuracies in 
+                the raw data. And with this newfound clarity, we were able to take the next step in our 
+                investigation and bring the superstore's financial struggles to a close.
+                </p>
+
+                <h2>Analysis Insights from EDA</h2>
+
+                <p>
+                <ul style="margin-left: 2rem;"></ul>
+                <li>Count of subcategory</li>
+                </ul>
+                <img src="https://user-images.githubusercontent.com/109746137/212703776-00634514-1500-4b94-9859-3d0e402223a7.png" alt="Count of Subcategory">
+
+                <p>
+                <ul style="margin-left: 2rem;"></ul>
+                <li>Most Preferred Ship Mode</li>
+                </ul>
+                <img src="https://user-images.githubusercontent.com/109746137/212704012-730720a4-cd34-404d-bd7f-6a8bff88a503.png" alt="Ship Mode">
+
+                <p>
+                <ul style="margin-left: 2rem;"></ul>
+                <li>Segment</li>
+                </ul>
+                <img src="https://user-images.githubusercontent.com/109746137/212704294-16feaf72-fb8a-460d-8f6d-0e9a49ca751d.png" alt="Segment">
+
+                <p>
+                <ul style="margin-left: 2rem;"></ul>
+                <li>Region</li>
+                </ul>
+                <img src="https://user-images.githubusercontent.com/109746137/212704704-91f41f23-ef6c-4ca5-b543-fc6e31fc756d.png" alt="Region">
+
+                <p>
+                <ul style="margin-left: 2rem;"></ul>
+                <li>Category</li>
+                </ul>
+                <img src="https://user-images.githubusercontent.com/109746137/212704795-c3cb8bf4-486b-4ac7-8b13-546937fe111d.png" alt="Category">
+
+                <p>
+                <h2>Findings, Recommendations and Conclusions</h2>
+                <ul style="margin-left: 2rem;">
+
+                <p>    
+                <li>
+                On analyzing the Super Store's sales and profitability data, it was found that the 
+                Technology sub-category and specific products such as Phones and Chairs are our highest 
+                selling and most profitable items. To offset losses from less profitable products such 
+                as Bookcases and Tables, I recommend bundling them with the high-performing items.
+                <br>
+                <img src="https://user-images.githubusercontent.com/109746137/212701865-61e2f8f4-9656-423b-afaa-ce088341ee11.png" alt="Product Performance">
+                </li>
+
+                <li>
+                For customers looking for a home office setup, I suggest creating a package deal that 
+                includes a variety of office essentials such as a table, chairs, phone, copiers, storage, 
+                labels, fasteners, and bookcases. This is a great option for customers who are busy and 
+                may not have the time to select individual products.
+                </li>
+
+                <li>
+                To address the issue of losses from selling Supplies, Bookcases, and Tables, I recommend 
+                considering dropping these products from our catalog or renegotiating with suppliers for 
+                a cheaper price.
+                </li>
+
+                <li>
+                Our customer base is primarily made up of Consumer and Corporate segments, which make up 
+                over 70% of our customers. To target these segments, I suggest offering special promotions 
+                and bundles for mass Consumer and Home Offices in the top 10 cities with the highest sales, 
+                and sending promotional emails or flyers to customers in the East and West regions.
+                <br>
+                <img src="https://user-images.githubusercontent.com/109746137/212702431-5d2e8c74-9dbe-4421-a3f4-c9d39d8ce000.png" alt="Customer Segment">
+                <img src="https://user-images.githubusercontent.com/109746137/212702488-757430dc-b704-453f-9fce-7310fefdde93.png" alt="City-wise Promotion">
+                </li>
+
+                <li>
+                The main reason for losses is discounts. To improve this, I recommend offering more discounts 
+                during festival seasons, as this will result in more sales. During these seasons, the discount 
+                rate is recommended to be not more than 20% as more than a 20% discount brings in great losses.
+                <br>
+                <img src="https://user-images.githubusercontent.com/109746137/212701635-8cfdf25d-28ac-46ce-8e8a-780dafd48eeb.png" alt="Discount Impact">
+                </li>
+
+                <li>
+                Additionally, the home office segment needs improvement. In some cities, we have fewer sales, 
+                which may be due to a lack of awareness. Advertising in these cities may help increase sales. 
+                For advertising strategy, in the event that the company wants to run product package promos, 
+                it is advised that the most common items that are usually bought together be used to inform 
+                the company's decision.
+                </li>
+                </ul>
+            </div>
+          </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <p>All the technical steps behind this project, including data cleaning, exploratory data 
+                analysis, feature engineering, model training, and evaluation are fully documented in a 
+                Jupyter Notebook. I haven't included the full notebook here because it contains 
+                visualizations, code cells, and outputs that won’t render properly in this format.
+                
+                <p>
+                    If you're interested in seeing the complete process or even replicating the results step 
+                    by step, you can view or download the notebook from my GitHub repository below:
+                </p>
+                
+                <p>
+                    <a href="https://github.com/alairdata/Superstore_Analysis" class="github-link" target="_blank">
+                    <span class="github-icon">⭐</span>
+                    View on GitHub
+                    </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-number">2</div>
+          <h3 class="project-title">Analysis of Udemy Web Application Data
+        </h3>
+        </div>
+
+       
+        <p class="project-description">
+          The objective of this project is to clean and preprocess the WebDevelopment.csv dataset using 
+          the pandas library in Python. The dataset contains information about web development courses 
+          from different websites.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">Data Cleaning</span>
+          <span class="tech-tag">Data Science</span>
+          <span class="tech-tag">ML</span>
+        </div>
+
+        <div class="project-toggles">
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Business Impact</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+            <div class="toggle-content">
+              <h1>Cleaning and Preprocessing Web Development Course Data</h1>
+            <h2>Project Objective</h2>
+            <p>
+                The goal of this project was to prepare a raw dataset of web development courses for meaningful analysis by performing comprehensive data cleaning and preprocessing using Python and the pandas library. The dataset, originally obtained from Kaggle, consists of 1,200 rows and 16 columns, each representing course attributes such as pricing, duration, learner engagement, and platform-specific metadata. By applying robust cleaning techniques, we ensured the dataset was analysis-ready and free from inconsistencies, irrelevant columns, and misformatted values.
+            </p>
+            <p>
+                This project also aims to establish a repeatable and reusable data preparation pipeline. The resulting clean dataset will serve as a foundational asset for future exploratory analysis, business insights generation, and even potential machine learning applications such as pricing optimization or popularity forecasting.
+            </p>
+
+            <h2>Dataset Overview</h2>
+            <p>
+                The dataset includes information about web development courses offered across various online learning platforms. Below is a detailed breakdown of the columns:
+            </p>
+            <ul style="margin-left: 2rem;"></ul>
+            <li><strong>id:</strong> Unique identifier for each course</li>
+            <li><strong>title:</strong> Title of the course</li>
+            <li><strong>url:</strong> Hosting website or course URL</li>
+            <li><strong>isPaid:</strong> Indicates if the course is paid (TRUE) or free (FALSE)</li>
+            <li><strong>price:</strong> The course price in USD</li>
+            <li><strong>numSubscribers:</strong> Number of users enrolled in the course</li>
+            <li><strong>numReviews:</strong> Total reviews submitted by users</li>
+            <li><strong>numPublishedLectures:</strong> Number of lectures included in the course</li>
+            <li><strong>instructionalLevel:</strong> Difficulty level (All Levels, Beginner, Intermediate, Expert)</li>
+            <li><strong>contentInfo (mins):</strong> Duration of the course, to be standardized to minutes</li>
+            <li><strong>publishedTime:</strong> Date the course was published</li>
+            <li><strong>Unnamed: 11 to Unnamed: 15:</strong> Empty or irrelevant columns to be removed</li>
+            </ul>
+
+            <p>
+            <h2>Technologies & Tools Used</h2>
+            <ul style="margin-left: 2rem;"></ul>
+            <li><strong>Language:</strong> Python 3.9.7</li>
+            <li><strong>Libraries:</strong> pandas 1.3.3, numpy</li>
+            <li><strong>Platform:</strong> Jupyter Notebook / Google Colab</li>
+            <li><strong>Source:</strong> <a href="https://www.kaggle.com/">Kaggle</a></li>
+            </ul>
+
+            <p>
+            <h2>Data Cleaning & Preprocessing Steps</h2>
+            <p>
+            A structured and meticulous cleaning pipeline was followed to ensure data integrity and usability. The main steps included:
+            </p>
+            <ul style="margin-left: 2rem;"></ul>
+            <li><strong>Initial Inspection:</strong> Loaded the dataset using <code>pd.read_csv()</code>, followed by <code>df.head()</code>, <code>df.shape</code>, and <code>df.info()</code> to inspect dimensions, structure, and null values.</li>
+            <li><strong>Removing Irrelevant Columns:</strong> Dropped <code>Unnamed: 11</code> through <code>Unnamed: 15</code> which contained no usable data.</li>
+            <li><strong>Standardizing Boolean Fields:</strong> Ensured the <code>isPaid</code> column only contained 'TRUE' or 'FALSE' to clearly distinguish free vs paid courses.</li>
+            <li><strong>Cleaning Price Field:</strong> Converted all prices from string format (e.g. '$19.99') to numerical values. Handled 'Free' as 0 and corrected any negative values to absolute values. Used <code>str.replace()</code> and <code>astype()</code> for transformation.</li>
+            <li><strong>Fixing Review Counts:</strong> Converted all values in <code>numReviews</code> to positive integers to reflect actual user activity and avoid inconsistencies.</li>
+            <li><strong>Normalizing Instruction Levels:</strong> Standardized the instructionalLevel column by mapping inconsistent text cases and phrasing to one of four levels: All, Beginner, Intermediate, or Expert.</li>
+            <li><strong>Standardizing Course Duration:</strong> Transformed content duration to minutes (if given in hours) using string manipulation and regex patterns to extract numeric values. For example, '2.5 hours' was converted to 150 minutes.</li>
+            <li><strong>Export Clean Dataset:</strong> The cleaned dataset was exported to a new CSV file using <code>df.to_csv("Clean_WebDev.csv", index=False)</code> for future use.</li>
+            </ol>
+
+            <p>
+            <h2>Final Output & Results</h2>
+            <p>
+            After cleaning, the dataset was transformed into a refined structure containing 11 relevant columns with consistent and valid values across all rows. There were no remaining nulls or inconsistencies. The dataset is now ready for:
+            </p>
+            <ul style="margin-left: 2rem;"></ul>
+            <li>Exploratory Data Analysis (EDA) on pricing, course length, and user engagement</li>
+            <li>Segmentation of courses by level or price tier</li>
+            <li>Training machine learning models (e.g., price prediction, popularity forecasting)</li>
+            <li>Building dashboards or visual reports with tools like Tableau or Power BI</li>
+            </ul>
+
+            <h2>Key Takeaways</h2>
+            <ul style="margin-left: 2rem;"></ul>
+            <li>Effective data cleaning is essential for accurate downstream analysis.</li>
+            <li>Real-world datasets often contain messy fields and irrelevant columns that need domain-driven decisions to clean.</li>
+            <li>Automation using pandas allows efficient transformations even on large datasets.</li>
+            <li>Clear documentation of each step supports reproducibility and collaboration with other analysts.</li>
+            </ul>
+
+            <h2>Contributing</h2>
+            <p>
+            Contributions are welcome! If you’d like to improve or extend this project, feel free to fork the repository and submit a pull request with your updates.
+            </p>
+
+            <h2>License</h2>
+            <p>
+            This project is licensed under the MIT License.
+            </p>
+
+            </div>
+          </div>
+          <div>
+        </div>
+          
+          <div class="toggle-section">
+            <button class="toggle-btn" onclick="toggleSection(this)">
+              <span class="toggle-icon">⚙️</span>
+              <span class="toggle-text">Technical Details</span>
+              <span class="toggle-arrow">▼</span>
+            </button>
+                        <div class="toggle-content">
+              <p>All the technical steps behind this project, including data cleaning, exploratory data 
+                analysis, feature engineering, model training, and evaluation are fully documented in a 
+                Jupyter Notebook. I haven't included the full notebook here because it contains 
+                visualizations, code cells, and outputs that won’t render properly in this format.
+                
+                <p>
+                    If you're interested in seeing the complete process or even replicating the results step 
+                    by step, you can view or download the notebook from my GitHub repository below:
+                </p>
+                
+                <p>
+                    <a href="https://github.com/alairdata/Analysis-of-Udemy-Web-Application-Data" class="github-link" target="_blank">
+                    <span class="github-icon">⭐</span>
+                    View on GitHub
+                    </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <script>
+  function toggleSection(button) {
+    const content = button.nextElementSibling;
+    const isActive = content.classList.contains('active');
+
+    // Close all other toggles in the same project card
+    const projectCard = button.closest('.project-card');
+    const allToggleContents = projectCard.querySelectorAll('.toggle-content');
+    const allToggleButtons = projectCard.querySelectorAll('.toggle-btn');
+
+    allToggleContents.forEach(tc => tc.classList.remove('active'));
+    allToggleButtons.forEach(tb => tb.classList.remove('active'));
+
+    // Toggle the clicked section
+    if (!isActive) {
+      content.classList.add('active');
+      button.classList.add('active');
+
+      // Delay the scroll a little to allow content to expand
+      setTimeout(() => {
+        const yOffset = -100; // Adjust this if you have a sticky navbar
+        const y = button.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }, 200); // delay helps ensure content has rendered
+    }
+  }
+
+  // Add stagger animation to project cards
+  document.addEventListener('DOMContentLoaded', function () {
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
+      card.style.animation = 'fadeInUp 0.6s ease forwards';
+    });
+  });
+
+  // Fade-in CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .project-card {
+      opacity: 0;
+    }
+  `;
+  document.head.appendChild(style);
+</script>
